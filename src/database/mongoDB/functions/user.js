@@ -18,13 +18,13 @@ function addAdmin(username,password_hashedANDsalted) {
   })
 }
 
-function delete(username) {
+function deleteClientOrAdmin(username) {
   return new Promise((resolve, reject) => {
     userModel.deleteOne({username: username}, function(err,result) {
       if (err) { throw err; }
       resolve();
-    })
-  })
+    });
+  });
 }
 
 function exists(username) {

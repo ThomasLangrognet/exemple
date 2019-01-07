@@ -94,7 +94,7 @@ const login = (req, res) => {
 
 const deleteClientOrAdmin = (req, res) => {
   const username = req.body.username;
-  userFunctions.delete(username).then(() => {
+  userFunctions.deleteClientOrAdmin(username).then(() => {
     res.status(200).send({Message: 'client/admin successfully deleted'})
   }).catch(err => {
     console.error(err);
@@ -146,6 +146,5 @@ module.exports = {
   isAuthenticatedChecker,
   adminChecker,
   logout,
-  deleteClient,
-  deleteAdmin
+  deleteClientOrAdmin
 }
