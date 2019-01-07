@@ -3,7 +3,7 @@ const userModel = require('../models').userModel;
 function addClient(username,password_hashedANDsalted) {
   return new Promise((resolve, reject) => {
     userModel.create({username: username, password_hashedANDsalted: password_hashedANDsalted, isAdmin: false}, function(err,result) {
-      if (err) { throw err; }
+      if (err) {reject()}
       resolve();
     })
   })

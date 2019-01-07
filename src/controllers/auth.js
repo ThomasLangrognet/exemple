@@ -8,7 +8,6 @@ const registerClient = (req, res) => {
     res.status(400).send({ Message: 'Invalid request' });
   }else{
     userFunctions.exists(username).then((exists) => {
-      console.log(exists)
       if(exists === false) {
         authService.hashANDsalt_password(password).then((password_hashedANDsalted) => {
           userFunctions.addClient(username, password_hashedANDsalted).then(() => {
