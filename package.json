@@ -1,0 +1,36 @@
+{
+  "name": "exemple",
+  "version": "0.0.0",
+  "description": "exemple pour camille",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ThomasLangrognet/exemple"
+  },
+  "keywords": [
+    "exemple",
+    "camille"
+  ],
+  "author": "papy",
+  "license": "ISC",
+  "dependencies": {
+    "@types/bcryptjs": "^2.4.2",
+    "@types/body-parser": "^1.17.0",
+    "@types/dotenv": "^6.1.0",
+    "@types/express": "^4.16.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^6.1.0",
+    "express": "^4.16.4",
+    "express-session": "^1.15.6",
+    "helmet": "^3.15.0",
+    "mongoose": "^5.4.2",
+    "morgan": "^1.9.1"
+  }
+}

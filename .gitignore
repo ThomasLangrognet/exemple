@@ -1,0 +1,14 @@
+# IDE config
+.idea/
+.vscode/
+.DS_Store/
+
+node_modules
+package-lock.json
+
+# Config file
+*.config.json
+*.config.js
+
+# Env file
+.env
