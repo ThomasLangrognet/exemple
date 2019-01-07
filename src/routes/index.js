@@ -3,9 +3,9 @@ const authRouter = require('./auth').router;
 
 router.use('/auth', authRouter);
 
-router.get('*', (req, res) => {
-    res.send('Not found !')
-});
+router.get('/',function(req,res){
+  res.status(200).send('Hello World')
+})
 
 module.exports = {
   router

@@ -8,7 +8,6 @@ const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
-const http = require('http');
 const routes = require('./routes').router;
 
 app.use(cors({origin: process.env.URL_FRONT, credentials: true}));
@@ -17,28 +16,20 @@ app.use(helmet());
 app.use(morgan('dev'));
 app.use(express.static(__dirname + '/public') );
 app.use(bodyParser.json({ limit: '4096kb' }));
-app.use('/back',routes);
 app.use(session({
     key: 'user_sid',
-    cookie: 'coldpad.sess.id',
+    cookie: 'exemple.sess.id',
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false
 }));
+app.use('/back',routes);
 
 app.use((req, res, next) => {
     if (req.cookies.user_sid && !req.session.info) {
         res.clearCookie('user_sid');
     }
     next();
-});
-
-const PORT = process.env.PORT;
-const server = http.createServer();
-server.listen({
-    port: PORT
-}, () => {
-    console.log('Server is listening on port ' + PORT);
 });
 
 module.exports = app;

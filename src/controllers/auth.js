@@ -8,7 +8,8 @@ const registerClient = (req, res) => {
     res.status(400).send({ Message: 'Invalid request' });
   }else{
     userFunctions.exists(username).then((exists) => {
-      if(exists === true) {
+      console.log(exists)
+      if(exists === false) {
         authService.hashANDsalt_password(password).then((password_hashedANDsalted) => {
           userFunctions.addClient(username, password_hashedANDsalted).then(() => {
             res.status(200).send({Message: 'client successfully registered'})
@@ -37,7 +38,7 @@ const registerAdmin = (req, res) => {
     res.status(400).send({ Message: 'Invalid request' });
   }else{
     userFunctions.exists(username).then((exists) => {
-      if(exists === true) {
+      if(exists === false) {
         authService.hashANDsalt_password(password).then((password_hashedANDsalted) => {
           userFunctions.addAdmin(username, password_hashedANDsalted).then(() => {
             res.status(200).send({Message: 'admin successfully registered'})
@@ -65,11 +66,10 @@ const login = (req, res) => {
   userFunctions.exists(username).then((exists) => {
     if(exists === true){
       userFunctions.findUser(username).then((user) => {
-        candidate_password = req.body.password;
         password_hashedANDsalted = user.password_hashedANDsalted;
         authService.comparePassword(candidate_password, password_hashedANDsalted).then((same) => {
           if(same === true){
-            let info = { username: user.password, status: user.isAdmin };
+            let info = { username: user.username, status: user.isAdmin };
             req.session.info = info;
             res.status(200).send({Message: 'password valid'});
           }else{
@@ -133,3 +133,15 @@ const logout = (req, res) => {
         res.status(200).send({Message: "logout"});
     });
 };
+
+module.exports = {
+  registerClient,
+  registerAdmin,
+  login,
+  isAuthenticated,
+  isAuthenticatedChecker,
+  adminChecker,
+  logout,
+  deleteClient,
+  deleteAdmin
+}
