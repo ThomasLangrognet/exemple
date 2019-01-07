@@ -1,7 +1,7 @@
 # IDE config
-.idea/
-.vscode/
-.DS_Store/
+.idea
+.vscode
+.DS_Store
 
 node_modules
 package-lock.json
