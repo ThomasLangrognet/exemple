@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const express = require("express");
+const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const session = require('express-session');
@@ -9,15 +9,7 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const http = require('http');
-const routes = require('./routes/index').router;
-
-const PORT = process.env.PORT;
-const server = http.createServer();
-server.listen({
-    port: PORT
-}, () => {
-    console.log('Server is listening on port ' + PORT);
-});
+const routes = require('./routes').router;
 
 app.use(cors({origin: process.env.URL_FRONT, credentials: true}));
 app.use(cookieParser());
@@ -25,6 +17,7 @@ app.use(helmet());
 app.use(morgan('dev'));
 app.use(express.static(__dirname + '/public') );
 app.use(bodyParser.json({ limit: '4096kb' }));
+app.use('/back',routes);
 app.use(session({
     key: 'user_sid',
     cookie: 'coldpad.sess.id',
@@ -40,7 +33,12 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use('/back',routes);
-
+const PORT = process.env.PORT;
+const server = http.createServer();
+server.listen({
+    port: PORT
+}, () => {
+    console.log('Server is listening on port ' + PORT);
+});
 
 module.exports = app;
