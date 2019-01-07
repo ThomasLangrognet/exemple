@@ -1,9 +1,9 @@
 const router = require('express').Router();
-const auth = require('./auth');
+const authRouter = require('./auth').router;
 
 router.use('/auth', authRouter);
 
-router.get('*', (req: Express.Request, res: Express.Response) => {
+router.get('*', (req, res) => {
     res.send('Not found !')
 });
 

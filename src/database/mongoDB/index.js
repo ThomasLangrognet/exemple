@@ -1,4 +1,4 @@
-const modelsFunctions = require('functions');
+const modelsFunctions = require('./functions');
 
 module.exports = {
   modelsFunctions

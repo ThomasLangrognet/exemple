@@ -12,6 +12,16 @@ function hashANDsalt_password(password) {
   });
 };
 
+function comparePassword(candidate_password, password_hashedANDsalted) {
+  return new Promise((resolve, reject) => {
+    bcrypt.compare(candidate_password,password_hashedANDsalted, function(err, same) {
+      if (err) { throw err; }
+      resolve(same)
+    });
+  });
+};
+
 module.exports = {
-  hashANDsalt_password
+  hashANDsalt_password,
+  comparePassword
 };

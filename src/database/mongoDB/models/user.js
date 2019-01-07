@@ -1,6 +1,7 @@
 const client = require('./connect').client;
+const mongoose = require('mongoose');
 
-const userSchema = new client.Schema({
+const userSchema = mongoose.Schema({
   username: String,
   password_hashedANDsalted: String,
   isAdmin: Boolean

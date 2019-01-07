@@ -29,4 +29,6 @@ router.get('/isAuthenticated', function (req, res) {
     authController.isAuthenticated(req, res);
 });
 
-export default router;
+module.exports = {
+  router
+};
