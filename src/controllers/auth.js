@@ -92,10 +92,14 @@ const login = (req, res) => {
   });
 };
 
-const deleteClient = (req, res) => {
-}
-
-const deleteAdmin = (req, res) => {
+const deleteClientOrAdmin = (req, res) => {
+  const username = req.body.username;
+  userFunctions.delete(username).then(() => {
+    res.status(200).send({Message: 'client/admin successfully deleted'})
+  }).catch(err => {
+    console.error(err);
+    res.status(500).end();
+  });
 }
 
 const isAuthenticated = (req, res) => {

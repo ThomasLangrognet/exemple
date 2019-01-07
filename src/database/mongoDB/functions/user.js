@@ -4,7 +4,7 @@ function addClient(username,password_hashedANDsalted) {
   return new Promise((resolve, reject) => {
     userModel.create({username: username, password_hashedANDsalted: password_hashedANDsalted, isAdmin: false}, function(err,result) {
       if (err) { throw err; }
-      resolve(true);
+      resolve();
     })
   })
 }
@@ -13,7 +13,16 @@ function addAdmin(username,password_hashedANDsalted) {
   return new Promise((resolve, reject) => {
     userModel.create({username: username, password_hashedANDsalted: password_hashedANDsalted, isAdmin: true}, function(err,result) {
       if (err) { throw err; }
-      resolve(true);
+      resolve();
+    })
+  })
+}
+
+function delete(username) {
+  return new Promise((resolve, reject) => {
+    userModel.deleteOne({username: username}, function(err,result) {
+      if (err) { throw err; }
+      resolve();
     })
   })
 }
